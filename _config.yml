@@ -14,23 +14,23 @@ lang: en
 
 
 # Change to your timezone › http://www.timezoneconverter.com/cgi-bin/findzone/findzone
-timezone: Europe/Moscow
+timezone:
 
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: Denis L. Sad                          # the main title
+title: Chirpy                          # the main title
 
-tagline: A portfolio website for my data analysis projects   # it will display as the sub-title
+tagline: A text-focused Jekyll theme   # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
-  A portfolio website for data analysis projects made by Denislam Sadykov
+  A minimal, responsive, and powerful Jekyll theme for presenting professional writing.
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
-url: ''https://denislsad.github.io'
+url: ''
 
 github:
-  username: denislsad             # change to your github username
+  username: github_username             # change to your github username
 
 twitter:
   username: twitter_username            # change to your twitter username
@@ -38,15 +38,15 @@ twitter:
 social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
-  name: Denislam Sadykov
-  email: denislamsad@gmail.com             # change to your email address
+  name: your_full_name
+  email: example@domain.com             # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    # - https://twitter.com/username      # change to your twitter homepage
+    - https://twitter.com/username      # change to your twitter homepage
     - https://github.com/username       # change to your github homepage
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
-    - https://www.linkedin.com/in/denislam-sadykov
+    # - https://www.linkedin.com/in/username
 
 google_site_verification:               # fill in to your verification string
 
@@ -81,7 +81,7 @@ theme_mode:   # [light|dark]
 img_cdn:
 
 # the avatar on sidebar, support local or CORS resources
-avatar: https://media.licdn.com/dms/image/D4D03AQHlYJFGZ3a_Vw/profile-displayphoto-shrink_800_800/0/1674125544435?e=1683158400&v=beta&t=6PjWWPz27AqKwdr7Cci-qKzLwp6ZN9p_punOnTdfC6U
+avatar:
 
 # boolean type, the global switch for ToC in posts.
 toc: true
