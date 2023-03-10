@@ -116,6 +116,95 @@ df.loc[leb_nan]
 |    2028 	|                                       Philippines 	|   2012 	|      Developing 	|            68.1 	|         217.0 	|      56 	| 1536 	|              23.7 	|    71 	|       88.0 	|     88.0 	|     0.1 	|         5.0 	|                            88.0 	|       0.7 	| 11.6 	|
 |    2760 	| United Kingdom of Great Britain and Northern I... 	|   2006 	|       Developed 	|            79.3 	|          82.0 	|       4 	|  764 	|              61.3 	|     4 	|       92.0 	|     92.0 	|     0.1 	|        11.6 	|                            87.4 	|       0.8 	| 15.8 	|
 
+We'll delete all the rows with missing values in the Life Expectancy column, because this variable is crucial for the analysis.
+```python
+df = df.dropna(subset=['life_expectancy'])
+```
+For the rest of the columns we'll fill the NaN values with variable means depending on the Status parameter (whether a country is developed or developing according to the World Bank).
+```python
+df.isna().sum()
+```
+```markdown
+country                              0
+year                                 0
+status                               0
+life_expectancy                      0
+adult_mortality                      0
+infant_deaths                        0
+alcohol                            193
+hepatitis_b                        553
+measles                              0
+bmi                                 32
+under_five_deaths                    0
+polio                               19
+diphtheria                          19
+hiv_aids                             0
+income_composition_of_resources    160
+schooling                          160
+dtype: int64
+```
+### Create two datesets for two types of nations (based on the Status column) to analyze them separetely (and to concatenate them later).
+```python
+developed = df.loc[df.status == 'Developed']
+developing = df.loc[df.status == 'Developing']
+
+# Split both dataset by those with and without missing values
+developed_miss = developed.loc[:, developed.isnull().any()]
+developing_miss = developing.loc[:, developing.isnull().any()]
+
+# Drop the columns with missing values
+developed = developed.drop(columns=developed_miss.columns)
+developing = developing.drop(columns=developing_miss.columns)
+
+# Fill in the missing values with multiple imputation
+from sklearn.experimental import enable_iterative_imputer
+from sklearn.impute import IterativeImputer
+imp = IterativeImputer(max_iter=len(developed_miss), random_state=0)
+imp.fit(developed_miss)
+developed_miss_filled = pd.DataFrame(np.round(imp.transform(developed_miss),1), columns=developed_miss.columns)
+
+imp = IterativeImputer(max_iter=len(developing_miss), random_state=0)
+imp.fit(developing_miss)
+developing_miss_filled = pd.DataFrame(np.round(imp.transform(developing_miss),1), columns=developing_miss.columns)
+
+# Just make sure, the two yet-to-be-merged datasets have the same lenth
+print(len(developed_miss_filled), len(developed))
+print(len(developing_miss_filled), len(developing))
+```
+```markdown
+512 512
+2416 2416
+```
+### Concatenate/merge all four DataFrames
+```python
+# developed and developed_miss_filled
+developed[developed_miss_filled.columns] = developed_miss_filled.values
+
+# developing and developing_miss_filled
+developing[developing_miss_filled.columns] = developing_miss_filled.values
+
+# developed and developing
+countries = pd.concat([developed, developing])
+countries = countries.sort_values(by='country').reset_index(drop=True)
+
+# Taking a look at the final dataset
+countries.sample(10)
+```
+
+| country 	|                                              year 	| status 	| life_expectancy 	| adult_mortality 	| infant_deaths 	| measles 	|  bmi 	| under_five_deaths 	| polio 	| diphtheria 	| hiv_aids 	| alcohol 	| hepatitis_b 	| income_composition_of_resources 	| schooling 	|      	|
+|--------:	|--------------------------------------------------:	|-------:	|----------------:	|----------------:	|--------------:	|--------:	|-----:	|------------------:	|------:	|-----------:	|---------:	|--------:	|------------:	|--------------------------------:	|----------:	|-----:	|
+|     846 	|                                 Equatorial Guinea 	|   2000 	|      Developing 	|            52.7 	|         336.0 	|       3 	|    0 	|              18.3 	|     4 	|       41.0 	|     34.0 	|     1.9 	|         4.5 	|                            37.5 	|       0.0 	|  0.0 	|
+|    1776 	|                                           Myanmar 	|   2001 	|      Developing 	|            62.5 	|         239.0 	|      72 	| 2519 	|              14.1 	|    98 	|       77.0 	|     73.0 	|     0.4 	|         0.4 	|                            71.9 	|       0.4 	|  7.6 	|
+|    1719 	|                                          Mongolia 	|   2009 	|      Developing 	|            66.9 	|         235.0 	|       1 	|    8 	|              45.9 	|     2 	|       96.0 	|     95.0 	|     0.1 	|         4.6 	|                            97.0 	|       0.7 	| 13.8 	|
+|    2540 	|                              Syrian Arab Republic 	|   2002 	|      Developing 	|            72.8 	|         135.0 	|       9 	|  538 	|              45.3 	|    11 	|       86.0 	|     84.0 	|     0.1 	|         1.2 	|                             8.0 	|       0.6 	| 10.2 	|
+|    2013 	|                                              Peru 	|   2012 	|      Developing 	|            74.9 	|         129.0 	|       9 	|    0 	|              53.6 	|    11 	|       94.0 	|     95.0 	|     0.1 	|         5.1 	|                            95.0 	|       0.7 	| 13.4 	|
+|     714 	|             Democratic People's Republic of Korea 	|   2011 	|      Developing 	|            69.4 	|         153.0 	|       8 	|    0 	|               3.8 	|    10 	|       99.0 	|     94.0 	|     0.1 	|         3.4 	|                            94.0 	|       0.5 	|  9.9 	|
+|     704 	|             Democratic People's Republic of Korea 	|   2001 	|      Developing 	|            66.6 	|         177.0 	|      16 	|    0 	|              25.7 	|    21 	|       98.0 	|     62.0 	|     0.1 	|         2.5 	|                            70.0 	|       0.5 	| 10.2 	|
+|    2160 	|                                       Saint Lucia 	|   2000 	|      Developing 	|            71.6 	|         183.0 	|       0 	|    0 	|              36.8 	|     0 	|        7.0 	|      7.0 	|     0.4 	|        11.7 	|                            15.3 	|       0.0 	| 12.8 	|
+|    2028 	|                                       Philippines 	|   2012 	|      Developing 	|            68.1 	|         217.0 	|      56 	| 1536 	|              23.7 	|    71 	|       88.0 	|     88.0 	|     0.1 	|         5.0 	|                            88.0 	|       0.7 	| 11.6 	|
+|    2760 	| United Kingdom of Great Britain and Northern I... 	|   2006 	|       Developed 	|            79.3 	|          82.0 	|       4 	|  764 	|              61.3 	|     4 	|       92.0 	|     92.0 	|     0.1 	|        11.6 	|                            87.4 	|       0.8 	| 15.8 	|
+
+
 ```python
 # Making sure there are no NaN values left
 countries.isna().sum()
