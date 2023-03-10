@@ -1,24 +1,13 @@
 ---
-title: Hello, the First One
-date: 2023-03-07 13:20:00
+title: Life Expectancy Analysis
+date: 2022-11-25 13:20:00
 layout: post
-categories: [firstone, homelab]
-tags: [project,healthcare]
+categories: [health, economy]
+tags: [python,eda,data analysis,world bank]
 ---
 
-# Telus
-llus primis aenean hymenaeos iaculis. Cubilia venenatis mauris potenti magnis feugiat congue curabitur fames, orci etiam ipsum mi blandit sit litora accumsan. 
-* Parturient, eget pharetra suspendisse pretium suspendisse, primis Nisl fringilla molestie nec. 
-* Dictumst at Pretium.
-* Cursus integer ornare vestibulum quis etiam libero. 
+# Life Expectanct at Birth
+I used data from the World Bank on life expectancy along with other parameters (mortality, diseases, etc.) for every country every year from 2000 to 2015. This data is quite a mess. For example, the GDP column is measured in many different units, so it is completely unusable, or the column names are broken.
 
-Curabitur feugiat eu ipsum nam. Nam euismod magnis penatibus ante bibendum nonummy proin suspendisse vestibulum praesent. Orci suscipit amet praesent gravida risus posuere. Morbi odio nisl. Luctus.
+There are no analytical conclusions at the end, as all the findings are quite obvious. The sole goal of this project is to apply my knowledge in data cleaning and visualization, as well as try to write a good-looking and reader-friendly notebook.
 
-Ullamcorper consectetuer. Sem varius donec luctus leo quis purus arcu vestibulum ut praesent tortor natoque luctus. Vulputate aenean vel, semper eros dictumst auctor tempus, facilisi metus dignissim. Nibh dignissim per.
-
-## Primis
-Tellus primis aenean hymenaeos iaculis. Cubilia venenatis mauris potenti magnis feugiat congue curabitur fames, orci etiam ipsum mi blandit sit litora accumsan. Parturient, eget pharetra suspendisse pretium suspendisse, primis Nisl fringilla molestie nec. Dictumst at Pretium.
-
-Cursus integer ornare vestibulum quis etiam libero. Curabitur feugiat eu ipsum nam. Nam euismod magnis penatibus ante bibendum nonummy proin suspendisse vestibulum praesent. Orci suscipit amet praesent gravida risus posuere. Morbi odio nisl. Luctus.
-
-Ullamcorper consectetuer. Sem varius donec luctus leo quis purus arcu vestibulum ut praesent tortor natoque luctus. Vulputate aenean vel, semper eros dictumst auctor tempus, facilisi metus dignissim. Nibh dignissim per.
