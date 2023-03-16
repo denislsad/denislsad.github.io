@@ -252,3 +252,168 @@ income_composition_of_resources     float64
 schooling                           float64
 dtype: object
 ```
+## Analysis
+### LEB changes for 15 years in the developing and developed nations.
+```python
+years = list(countries.year.unique())
+
+leb_by_year_developed = developed.groupby(['year']).life_expectancy.mean()
+leb_by_year_developing = developing.groupby(['year']).life_expectancy.mean()
+
+
+plt.plot(leb_by_year_developed, label='Developed')
+plt.plot(leb_by_year_developing, label='Developing')
+
+plt.legend(loc=4)
+plt.xticks(years, rotation=45)
+plt.title('Life Expectancy for Developed and Developing Countries (2000-2015)', fontsize=14)
+plt.ylabel('Life Expectancy at Birth')
+plt.show()
+```
+![Life expenctancy for developed and developing countries](\assets\leb\leb1.png)
+
+### Correlation of life expectancy with other variables.
+```python
+def led_stats_corr(i, y_col):
+    plt.subplot(2, 2, i)
+    ax = sns.scatterplot(data = countries, x = 'life_expectancy', y = y_col, hue = 'status', s = 20)
+    y_string = y_col.replace('_', ' ').title()
+    plt.title(f'Life Expectancy vs {y_string}', fontsize=14)
+    return ax
+
+
+plt.rcParams['figure.figsize'] = [11, 7]
+
+# Scatterplot life_expectancy and bmi
+led_stats_corr(1, 'bmi')
+
+# Scatterplot life_expectancy and alcohol
+led_stats_corr(2, 'alcohol')
+
+# Scatterplot life_expectancy and income_composition_of_resources
+led_stats_corr(3, 'income_composition_of_resources')
+
+# Scatterplot life expectancy and schooling
+led_stats_corr(4, 'schooling')
+
+plt.subplots_adjust(wspace=0.25, hspace=0.25, top=1.3, bottom=0.2)
+plt.show()
+```
+![Life expectancy vs other variables](\assets\leb\leb2.png)
+
+Based on these graphs, we see a possitive correlation between life expectancy with Income Composition of Resources and Schooling. <br>
+There is a slight possitive correlation with alcohol and, especially, BMI, but it doesn't mean that people who consume more alcohol or have higher BMI tend to live longer in general.
+```python
+# Calculating Pearson correlation for these variables
+
+cols_for_corr = ['life_expectancy', 'bmi', 'alcohol', 'income_composition_of_resources', 'schooling']
+countries[cols_for_corr].corr().iloc[0]
+```
+```markdown
+life_expectancy                    1.000000
+bmi                                0.576485
+alcohol                            0.419462
+income_composition_of_resources    0.722415
+schooling                          0.754713
+Name: life_expectancy, dtype: float64
+```
+### Distributution of other variables every year
+Here, we'll build a function to display the distribution of data for a given period of time. <br> `Due to the huge difference in some statistic between developed and developing countries, log transformation can be applied, optionally.`
+```python
+def dist_by_year(year, col_list, log_needed):
+    """
+    year – plot data for a given year (int)
+    col_list - list of columns to plot (list of strings)
+    log_needed - list of Boolean values; every value's index corresponds to col_list index
+    """
+    this_year = countries[countries['year'] == year]
+    subplot_num = len(col_list)
+    
+    for i in range(1, subplot_num+1):
+        x_col_string = col_list[i-1].replace('_', ' ').title()
+        
+        if log_needed[i-1] == False:
+            sns.displot(x=this_year[col_list[i-1]], hue=this_year['status'], kind="kde")
+            plt.title(f"{x_col_string} Rate for Developing and Developed Countries in {year}")
+            plt.xlabel(f"{x_col_string} Rate")
+        else:
+            sns.displot(x=np.log(this_year[col_list[i-1]]), hue=this_year.status, kind="kde")
+            plt.title(f"{x_col_string} Rate for Developing and Developed Countries in {year} – log scaled")
+            plt.xlabel(f"{x_col_string} Rate (log scaled)")
+        
+        plt.ylabel("")
+        plt.show()
+        plt.clf()
+```
+### Test the function
+#### i. Adult mortality, infant and under five year old deaths `(log transform the last two)` for the years 2000 and 2015. 
+```python
+years = [2000, 2015]
+for year in years:
+    dist_by_year(year, ['adult_mortality', 'infant_deaths', 'under_five_deaths'], [False, True, True])
+```
+![Adult mortality rate in 2000](\assets\leb\leb3.png)
+
+![Infant death rate in 2000, log](\assets\leb\leb4.png)
+
+![Under five death rate in 2000, log](\assets\leb\leb5.png)
+
+![Adult mortality rate in 2015](\assets\leb\leb6.png)
+
+![Infant death rate in 2015, log](\assets\leb\leb7.png)
+
+![Under five death rate in 2015, log](\assets\leb\leb8.png)
+
+![Measles rate in 2015, log](\assets\leb\leb9.png)
+
+![Polio rate in 2015, log](\assets\leb\leb10.png)
+
+![Diphtheria rate in 2015](\assets\leb\leb11.png)
+
+![Hepatitis B rate in 2015](\assets\leb\leb12.png)
+
+## Conclusion
+What was done throughout the process.
+1. Fixed names of the columns.<br>
+```python
+df.columns = [x.strip() for x in df.columns]
+df.columns = [x.lower() for x in df.columns]
+df.columns = [x.replace(' ', '_') for x in df.columns]
+```
+
+2. I selected columns with missing values. <br>
+```python
+developed_miss = developed.loc[:, developed.isnull().any()]
+```
+
+3. First I diplayed the amount of missing values in every column<br>
+```python
+df.isna().sum()
+```
+
+4. Then I split the dataset by two in order to fill the NaN with the most appropriate values (because every medical parameter is drastically different.<br>
+```python
+developed = df.loc[df.status == 'Developed']
+```
+
+5. And then split each by two again to provide the IterativeImputer from the sklearn library only with the columns with missing values.<br>
+```python
+developed_miss = developed.loc[:, developed.isnull().any()]
+```
+
+6. 'Concatinated' two DataFrames with different columns and indices, but the same length by adding columns from one DF to another with a simple assigning. <br>
+```python
+developed[developed_miss_filled.columns] = developed_miss_filled.values
+```
+Then I concatinated the developed and developing DataFrames, and got the original table, but with appropriately filled missing values and without rows with NaN in the GDP and Life Expectancy columns (due to their importance for the following analysis).
+```python
+countries = pd.concat([developed, developing])
+countries = countries.sort_values(by='country').reset_index(drop=True)
+```
+7. I made a few graphs on life expectancy growths in 2000 - 2015 and correlation between life expectancy with the alcohol consumption, BMI, schooling years, and income composition of resources. All these parameters have positive correlation with life expectancy, though it doesn't tell anything about causation.
+
+8. Finally, I showed the distribution of other statisctics. First, I tested the function with the mortality variables (adults, infants, and under five year old children) for the first and the last years in the data set. In order to display the infants and children mortality on the graph, I applied logarithmic transormation. <br> Second, I tried out the function with the diseases which still affect children all over the world (measles, polio, diphtheria, hepatitis B).)
+
+For the steps 7 and 8, I custom functions to visualize all the required data efficiently. <br> 
+The first function takes in a counter for subplots and a column name to build a scatterplot. <br> 
+The second function takes in a year, list of columns, and list of Boolean of the same lenth to tell whether a log transformation should be applied to the plot.
