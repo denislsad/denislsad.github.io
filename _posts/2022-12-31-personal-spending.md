@@ -1,12 +1,12 @@
 ---
 title: Personal Spending
-date: 2022-12-31 21:13:00
+date: 2022-12-31 9:13:00
 layout: post
 categories: [finance, personal]
 tags: [python,eda,data analysis,personal data]
 ---
 # Intro
-Here I take a look at the way I spend money and draw some insights from it. It could help me handle my finances in a more meaningful way.<br>
+I take a look at the way I spend money and draw some insights from it. It could help me handle my finances in a more meaningful way.<br>
 
 ## Data
 
@@ -52,35 +52,62 @@ detailed = pd.read_excel('spending.xlsx', sheet_name='Spent (Apr 1 - Sep 23) +',
 ```python
 detailed.head()
 ```
+|   	|                Date 	|   Out 	|   - 	|   + 	|                                    Main Meals 	| Est. Price 	|           Total Price 	|                      Other 	| Est. Price.1 	|     Total Price.1 	|                   Extra 	| Est. Price.2 	| Total Price.2 	|
+|--:	|--------------------:	|------:	|----:	|----:	|----------------------------------------------:	|-----------:	|----------------------:	|---------------------------:	|-------------:	|------------------:	|------------------------:	|-------------:	|--------------:	|
+| 0 	| 2022-07-30 00:00:00 	|  30.0 	| NaN 	| NaN 	| Bread, Milk, Paper, Coffee, Butter, Chocolate 	|     1100.0 	| 30+60+250+630+170+138 	|                    Napkins 	|         30.0 	|                30 	|               Junk food 	|          0.0 	|           300 	|
+| 1 	| 2022-07-31 00:00:00 	| 245.0 	| NaN 	| NaN 	|                                 Yogurt, Bread 	|      200.0 	|                 98+76 	|                 Toothpaste 	|        250.0 	|               245 	|                       - 	|          0.0 	|             0 	|
+| 2 	| 2022-08-01 00:00:00 	|   NaN 	| NaN 	| NaN 	|   Pasta, tomatoes, mushrooms, spinach, cheese 	|      635.0 	|     80+100+96+155+204 	|    Eggs, Crispbread, Bread 	|        352.0 	|      145+76+76+16 	| Coffee with cherry pies 	|       1000.0 	|           890 	|
+| 3 	| 2022-08-02 00:00:00 	|   NaN 	| NaN 	| NaN 	|                                 Beans, quinoa 	|      150.0 	|                 40+90 	| Syrnyky, Milk, Tea, Apples 	|        300.0 	| 82 + 80 + 45 + 43 	|                       - 	|          0.0 	|             0 	|
+| 4 	| 2022-08-03 00:00:00 	|   NaN 	| 7.0 	| NaN 	|                                         Pizza 	|      600.0 	|                   295 	|        Train tickets, Fare 	|       2000.0 	|          1748+680 	|                       - 	|          0.0 	|             0 	|
 
 ```python
 detailed.shape
 ```
-
+```markdown
+(78, 13)
+```
 ```python
 detailed.dtypes
 ```
-
+```markdown
+Date              object
+Out              float64
+-                float64
++                float64
+Main Meals        object
+Est. Price       float64
+Total Price       object
+Other             object
+Est. Price.1     float64
+Total Price.1     object
+Extra             object
+Est. Price.2     float64
+Total Price.2     object
+dtype: object
+```
 ```python
 detailed['Date'].iloc[0], detailed['Date'].iloc[-3]
 ```
-
+```markdown
+(datetime.datetime(2022, 7, 30, 0, 0), datetime.datetime(2022, 9, 27, 0, 0))
+```
 DataFrame spans the period from July 30 to September 27, 2022. The data types are mostly correct, but because the `Date` column contains datetime and string values it is read as the 'object' dtype. <br>
 About half of the columns make sense within the analysis in Excel, but for the purposes of this project, they need to be removed.
 
 
 # Process Data
 
-```python
-detailed.head()
-```
-
 ### Clean the DataFrame
 
 ```python
 detailed.columns
 ```
-
+``` markdown
+Index(['Date', 'Out', '-', '+', 'Main Meals', 'Est. Price', 'Total Price',
+       'Other', 'Est. Price.1', 'Total Price.1', 'Extra', 'Est. Price.2',
+       'Total Price.2'],
+      dtype='object')
+```
 ```python
 # Remove unnecessary columns
 detailed = detailed.drop(columns=['Out', '-', '+', 'Est. Price', 'Est. Price.1', 'Est. Price.2'])
@@ -135,15 +162,53 @@ for ind, row in detailed.iterrows():
     find_mismatch_ind('Other', 'Total Price.1')
     find_mismatch_ind('Extra', 'Total Price.2')
 ```
-
+```markdown
+Row 2, Other – 3 items and 4 prices!
+Row 6, Other – 4 items and 5 prices!
+Row 6, Extra – 4 items and 1 prices!
+Row 13, Other – 3 items and 4 prices!
+Row 22, Extra – 3 items and 5 prices!
+Row 49, Main Meals – 2 items and 1 prices!
+Row 49, Other – 2 items and 3 prices!
+Row 50, Other – 7 items and 8 prices!
+Row 56, Main Meals – 1 items and 3 prices!
+Row 56, Other – 2 items and 3 prices!
+Row 59, Other – 2 items and 3 prices!
+Row 59, Extra – 4 items and 5 prices!
+Row 68, Other – 3 items and 2 prices!
+```
 ```python
 detailed.loc[50]
 ```
-
+```markdown
+Date                                           2022-09-08 00:00:00
+Main Meals                      Potato, mussels, green bean, bread
+Total Price                                          94+359+105+43
+Other            Napkins, fruit, oranges, pads, choc, butter, b...
+Total Price.1                         140+96+119+140+180+80+150+56
+Extra                                                 Coffee, cake
+Total Price.2                                              280+210
+Name: 50, dtype: object
+```
 ```python
 # Take a closer look at these rows
 detailed.loc[ind_list]
 ```
+|    	|                Date 	|                                  Main Meals 	|       Total Price 	|                                             Other 	|                Total Price.1 	|                              Extra 	|     Total Price.2 	|
+|---:	|--------------------:	|--------------------------------------------:	|------------------:	|--------------------------------------------------:	|-----------------------------:	|-----------------------------------:	|------------------:	|
+|  2 	| 2022-08-01 00:00:00 	| Pasta, tomatoes, mushrooms, spinach, cheese 	| 80+100+96+155+204 	|                           Eggs, Crispbread, Bread 	|                 145+76+76+16 	|            Coffee with cherry pies 	|               890 	|
+|  6 	| 2022-08-05 00:00:00 	|               Mash, broccoli, soy meatballs 	|        62+155+274 	|           Crispbread, Tomatoes, Cucumbers, Pepper 	|                76+80+51+26+8 	|   Almond, bananas, peaches, yogurt 	|               527 	|
+|  6 	| 2022-08-05 00:00:00 	|               Mash, broccoli, soy meatballs 	|        62+155+274 	|           Crispbread, Tomatoes, Cucumbers, Pepper 	|                76+80+51+26+8 	|   Almond, bananas, peaches, yogurt 	|               527 	|
+| 13 	| 2022-08-10 00:00:00 	|                              Wok, chickpeas 	|           350+134 	|                       Coffee; banana, milk, bread 	|                 640+80+73+36 	|                             Lichen 	|               250 	|
+| 22 	| 2022-08-17 00:00:00 	|                                           - 	|                 0 	|      Bananas, butter, eggs, spice, flour, Nutella 	|         65+150+110+31+80+380 	|                   Gum, taxis, beer 	| 30+221+65+287+147 	|
+| 49 	| 2022-09-07 00:00:00 	|                             Cucumbers, cola 	|               260 	|                           Breakfast, coffee; fare 	|                  350+440+180 	|                                  - 	|                 0 	|
+| 49 	| 2022-09-07 00:00:00 	|                             Cucumbers, cola 	|               260 	|                           Breakfast, coffee; fare 	|                  350+440+180 	|                                  - 	|                 0 	|
+| 50 	| 2022-09-08 00:00:00 	|          Potato, mussels, green bean, bread 	|     94+359+105+43 	| Napkins, fruit, oranges, pads, choc, butter, b... 	| 140+96+119+140+180+80+150+56 	|                       Coffee, cake 	|           280+210 	|
+| 56 	| 2022-09-12 00:00:00 	|                                     Burrito 	|       210+250+200 	|                                       Fare, bread 	|                   180+48+160 	|                                  - 	|                 0 	|
+| 56 	| 2022-09-12 00:00:00 	|                                     Burrito 	|       210+250+200 	|                                       Fare, bread 	|                   180+48+160 	|                                  - 	|                 0 	|
+| 59 	| 2022-09-15 00:00:00 	|                                       Lunch 	|               284 	|                                Coffee, cake; fare 	|                  140+170+350 	| Museum, cake; rolls, yogurt, juice 	| 0+190+180+105+126 	|
+| 59 	| 2022-09-15 00:00:00 	|                                       Lunch 	|               284 	|                                Coffee, cake; fare 	|                  140+170+350 	| Museum, cake; rolls, yogurt, juice 	| 0+190+180+105+126 	|
+| 68 	| 2022-09-22 00:00:00 	|                                           - 	|                 0 	|                                 Pills, taxi, fare 	|                      361+310 	|                                  - 	|                 0 	|
 
 ```python
 # Change or delete a row, based on situaition
@@ -202,7 +267,9 @@ new_detailed_price = total_df_reshape(detailed_price, 'Price', '+')
 ```python
 len(new_detailed_price), len(new_detailed_cat)
 ```
-
+```markdown
+(470, 470)
+```
 <b>Step 4</b>. Merge the table back.
 
 ```python
@@ -215,7 +282,13 @@ detailed_new = detailed_new.drop(columns=['Date_', 'Category_'])
 # Check the date types
 detailed_new.dtypes
 ```
-
+```markdown
+Date        datetime64[ns]
+Item                object
+Category            object
+Price               object
+dtype: object
+```
 ```python
 # Change data types
 detailed_new['Price'] = detailed_new['Price'].astype('int')
@@ -225,7 +298,18 @@ detailed_new['Price'] = detailed_new['Price'].astype('int')
 # The final version of the dataset
 detailed_new.head(10)
 ```
-
+|   	|       Date 	|      Item 	|   Category 	| Price 	|
+|--:	|-----------:	|----------:	|-----------:	|------:	|
+| 0 	| 2022-07-30 	|     Bread 	| Main Meals 	|    30 	|
+| 1 	| 2022-07-30 	|      Milk 	| Main Meals 	|    60 	|
+| 2 	| 2022-07-30 	|     Paper 	| Main Meals 	|   250 	|
+| 3 	| 2022-07-30 	|    Coffee 	| Main Meals 	|   630 	|
+| 4 	| 2022-07-30 	|    Butter 	| Main Meals 	|   170 	|
+| 5 	| 2022-07-30 	| Chocolate 	| Main Meals 	|   138 	|
+| 6 	| 2022-07-31 	|    Yogurt 	| Main Meals 	|    98 	|
+| 7 	| 2022-07-31 	|     Bread 	| Main Meals 	|    76 	|
+| 8 	| 2022-08-01 	|     Pasta 	| Main Meals 	|    80 	|
+| 9 	| 2022-08-01 	|  Tomatoes 	| Main Meals 	|   100 	|
 # Analyze Data
 
 
@@ -234,18 +318,30 @@ detailed_new.head(10)
 ```python
 detailed_new.describe()
 ```
-
+|       	|      Price 	|
+|------:	|-----------:	|
+| count 	|  470.00000 	|
+|  mean 	|  149.13617 	|
+|   std 	|  181.24905 	|
+|   min 	|    0.00000 	|
+|   25% 	|   58.00000 	|
+|   50% 	|  105.00000 	|
+|   75% 	|  170.75000 	|
+|   max 	| 1748.00000 	|
 ```python
 sns.boxplot(data=detailed_new, x='Price', showfliers=False)
 plt.show()
 ```
+![Spending Five-Number Summary](\assets\leb\spend1.png)
 
 ### Item statistics
 
 ```python
 detailed_new.Item.nunique()
 ```
-
+```markdown
+155
+```
 ```python
 items_summed = detailed_new.groupby('Item').agg({'Price': 'sum', 'Item': 'count'})
 items_summed = items_summed.rename(columns={'Price': 'Total Price', 'Item': 'Amount'})
@@ -255,6 +351,14 @@ items_summed = items_summed.sort_values(by='Total Price', ascending=False)
 # Top-5 items which I spent the most money
 items_summed.head()
 ```
+|        	| Total Price 	| Amount 	| Average Price 	|
+|-------:	|------------:	|-------:	|--------------:	|
+|   Item 	|             	|        	|               	|
+| Coffee 	|        7139 	|     22 	|        324.50 	|
+|   Fare 	|        2800 	|     17 	|        164.71 	|
+|   Cake 	|        2586 	|     14 	|        184.71 	|
+|   Taxi 	|        2407 	|      5 	|        481.40 	|
+|   Cafe 	|        2300 	|      2 	|       1150.00 	|
 
 ### Categories comparison
 
@@ -262,6 +366,11 @@ items_summed.head()
 categories = detailed_new.groupby('Category')['Price'].sum().reset_index()
 categories
 ```
+|   	|   Category 	| Price 	|
+|--:	|-----------:	|------:	|
+| 0 	|      Extra 	| 16329 	|
+| 1 	| Main Meals 	| 24590 	|
+| 2 	|      Other 	| 29175 	|
 
 ```python
 plt.pie(categories['Price'], labels=categories['Category'])
@@ -271,7 +380,7 @@ p.gca().add_artist(my_circle)
 
 plt.show()
 ```
-
+![Categories Donut Chart](\assets\leb\spend2.png)
 ```python
 # As we see, all three categories seem not be differ dramatically. Check it with barplot:
 # counts_cat = list(categories['index'])
@@ -280,7 +389,7 @@ plt.bar(categories['Category'], categories['Price'], color='brown')
 plt.title('Total Expenses by Category', fontsize=14)
 plt.show()
 ```
-
+![Total Expenses by Category](\assets\leb\spend3.png)
 ### Detailed look at the Extra category
 This category, despite its name, is quite large. A possible reason is that four out five most expensive items (see the items_summed table above) are from this category. <br> 
 Let's take a look at what percentage coffee makes up in Extra.
@@ -290,13 +399,16 @@ coffee_sum_detailed = np.sum(detailed_new.loc[detailed_new['Item'].str.contains(
 extra_prices = detailed_new.loc[detailed_new['Category'] == 'Extra'].Price
 print(coffee_sum_detailed / np.sum(extra_prices) * 100)
 ```
-
+```markdown
+49.17018800906363
+```
 Coffee takes up almost half of all expenses in the Extra category. <br> Finally, let's check if all the products in it cost more on average.
 
 ```python
 sns.boxplot(data=detailed_new, x='Category', y='Price', showfliers=False)
 plt.show()
 ```
+![Categories Five-Number Statistics](\assets\leb\spend4.png)
 
 Since the Price data is not normally distributed (but right-skewed), run the Kruskal-Wallis H-test to check if the medians of all three categories are from the same population 
 
@@ -306,7 +418,9 @@ meal_prices = detailed_new.loc[detailed_new['Category'] == 'Main Meals'].Price
 pval = stats.kruskal(extra_prices, other_prices, meal_prices)[1]
 print(pval)
 ```
-
+```markdown
+0.7095417875569991
+```
 Since the p-value is 0.71, we fail to reject the hypothesis that the Extra category prices were higher than those from two other categories.<br>
 Note: the average prices in three categories are 154, 145, and 151.
 
