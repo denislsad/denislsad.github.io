@@ -52,6 +52,8 @@ detailed = pd.read_excel('spending.xlsx', sheet_name='Spent (Apr 1 - Sep 23) +',
 ```python
 detailed.head()
 ```
+
+
 |   	|                Date 	|   Out 	|   - 	|   + 	|                                    Main Meals 	| Est. Price 	|           Total Price 	|                      Other 	| Est. Price.1 	|     Total Price.1 	|                   Extra 	| Est. Price.2 	| Total Price.2 	|
 |--:	|--------------------:	|------:	|----:	|----:	|----------------------------------------------:	|-----------:	|----------------------:	|---------------------------:	|-------------:	|------------------:	|------------------------:	|-------------:	|--------------:	|
 | 0 	| 2022-07-30 00:00:00 	|  30.0 	| NaN 	| NaN 	| Bread, Milk, Paper, Coffee, Butter, Chocolate 	|     1100.0 	| 30+60+250+630+170+138 	|                    Napkins 	|         30.0 	|                30 	|               Junk food 	|          0.0 	|           300 	|
@@ -59,6 +61,7 @@ detailed.head()
 | 2 	| 2022-08-01 00:00:00 	|   NaN 	| NaN 	| NaN 	|   Pasta, tomatoes, mushrooms, spinach, cheese 	|      635.0 	|     80+100+96+155+204 	|    Eggs, Crispbread, Bread 	|        352.0 	|      145+76+76+16 	| Coffee with cherry pies 	|       1000.0 	|           890 	|
 | 3 	| 2022-08-02 00:00:00 	|   NaN 	| NaN 	| NaN 	|                                 Beans, quinoa 	|      150.0 	|                 40+90 	| Syrnyky, Milk, Tea, Apples 	|        300.0 	| 82 + 80 + 45 + 43 	|                       - 	|          0.0 	|             0 	|
 | 4 	| 2022-08-03 00:00:00 	|   NaN 	| 7.0 	| NaN 	|                                         Pizza 	|      600.0 	|                   295 	|        Train tickets, Fare 	|       2000.0 	|          1748+680 	|                       - 	|          0.0 	|             0 	|
+
 
 ```python
 detailed.shape
@@ -194,6 +197,8 @@ Name: 50, dtype: object
 # Take a closer look at these rows
 detailed.loc[ind_list]
 ```
+
+
 |    	|                Date 	|                                  Main Meals 	|       Total Price 	|                                             Other 	|                Total Price.1 	|                              Extra 	|     Total Price.2 	|
 |---:	|--------------------:	|--------------------------------------------:	|------------------:	|--------------------------------------------------:	|-----------------------------:	|-----------------------------------:	|------------------:	|
 |  2 	| 2022-08-01 00:00:00 	| Pasta, tomatoes, mushrooms, spinach, cheese 	| 80+100+96+155+204 	|                           Eggs, Crispbread, Bread 	|                 145+76+76+16 	|            Coffee with cherry pies 	|               890 	|
@@ -209,6 +214,7 @@ detailed.loc[ind_list]
 | 59 	| 2022-09-15 00:00:00 	|                                       Lunch 	|               284 	|                                Coffee, cake; fare 	|                  140+170+350 	| Museum, cake; rolls, yogurt, juice 	| 0+190+180+105+126 	|
 | 59 	| 2022-09-15 00:00:00 	|                                       Lunch 	|               284 	|                                Coffee, cake; fare 	|                  140+170+350 	| Museum, cake; rolls, yogurt, juice 	| 0+190+180+105+126 	|
 | 68 	| 2022-09-22 00:00:00 	|                                           - 	|                 0 	|                                 Pills, taxi, fare 	|                      361+310 	|                                  - 	|                 0 	|
+
 
 ```python
 # Change or delete a row, based on situaition
@@ -298,6 +304,8 @@ detailed_new['Price'] = detailed_new['Price'].astype('int')
 # The final version of the dataset
 detailed_new.head(10)
 ```
+
+
 |   	|       Date 	|      Item 	|   Category 	| Price 	|
 |--:	|-----------:	|----------:	|-----------:	|------:	|
 | 0 	| 2022-07-30 	|     Bread 	| Main Meals 	|    30 	|
@@ -310,14 +318,17 @@ detailed_new.head(10)
 | 7 	| 2022-07-31 	|     Bread 	| Main Meals 	|    76 	|
 | 8 	| 2022-08-01 	|     Pasta 	| Main Meals 	|    80 	|
 | 9 	| 2022-08-01 	|  Tomatoes 	| Main Meals 	|   100 	|
-# Analyze Data
 
+
+# Analyze Data
 
 ### Price statistics
 
 ```python
 detailed_new.describe()
 ```
+
+
 |       	|      Price 	|
 |------:	|-----------:	|
 | count 	|  470.00000 	|
@@ -328,6 +339,8 @@ detailed_new.describe()
 |   50% 	|  105.00000 	|
 |   75% 	|  170.75000 	|
 |   max 	| 1748.00000 	|
+
+
 ```python
 sns.boxplot(data=detailed_new, x='Price', showfliers=False)
 plt.show()
@@ -351,6 +364,8 @@ items_summed = items_summed.sort_values(by='Total Price', ascending=False)
 # Top-5 items which I spent the most money
 items_summed.head()
 ```
+
+
 |        	| Total Price 	| Amount 	| Average Price 	|
 |-------:	|------------:	|-------:	|--------------:	|
 |   Item 	|             	|        	|               	|
@@ -360,17 +375,22 @@ items_summed.head()
 |   Taxi 	|        2407 	|      5 	|        481.40 	|
 |   Cafe 	|        2300 	|      2 	|       1150.00 	|
 
+
+
 ### Categories comparison
 
 ```python
 categories = detailed_new.groupby('Category')['Price'].sum().reset_index()
 categories
 ```
+
+
 |   	|   Category 	| Price 	|
 |--:	|-----------:	|------:	|
 | 0 	|      Extra 	| 16329 	|
 | 1 	| Main Meals 	| 24590 	|
 | 2 	|      Other 	| 29175 	|
+
 
 ```python
 plt.pie(categories['Price'], labels=categories['Category'])
