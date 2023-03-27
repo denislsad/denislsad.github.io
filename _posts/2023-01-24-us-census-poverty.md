@@ -6,7 +6,7 @@ categories: [social, census]
 tags: [python,usa,census,population]
 ---
 
-<!-- #region -->
+<!-- 
 This is the first part of the project, in which I analyze the Census data on poverty and incomes in the United States. Here, I focus on the data on poverty. The [next part](https://github.com/denislsad/us-census-income) is about income and income distribution. The latest available data from Census comes from the year 2021. You can find this project's data and code [on GitHub](https://github.com/denislsad/us-census-poverty).
 
 I'm interested in displaying trends over time for different groups (by age, race, and family type) and answering questions with statistical tests and visualization. This project consists of three sections. Each of them starts with a custom function definition, followed by the implementation of these functions and conclusions.
@@ -28,9 +28,9 @@ Note: For all DataFrames population is given in thousands.
 
 - All the tables don't look very messy despite not being made for the Python format. <br>
 So, wrangling and tidying could be made underway on the loading stage. Data types could be changed right after a DataFrame is loaded.
-<!-- #endregion -->
 
-<!-- #region -->
+
+
 ### Analyze
 1. How did the poverty situation change for three age groups (children, adults, seniors) across five races (white, Black, Hispanic, Asian, and Native) since the data started being collected (from 1959)? 
 
@@ -39,7 +39,7 @@ So, wrangling and tidying could be made underway on the loading stage. Data type
 
 
 3. Explore poverty in 2021 in the US by nine groups (age, sex, race, etc.).
-<!-- #endregion -->
+
 
 <i>The data will be loaded gradually as the analysis proceeds.
 
@@ -69,7 +69,7 @@ from cleaning_census_data import extract_rows, change_dtypes, get_df_name
 `change_dtypes` – turn string values to NaNs and change all data types to float (turns every numeric to float and strings to NaN);<br>
 `get_df_name` – print the name of the current DataFrame to the title (to print out some parts of the DataFrame name to the plot title).
 
-<!-- #region -->
+
 # Changes in Poverty over Time by Race
 #### Question
 Here we'll try to answer the question `How did the situation change for different races since the data started being collected?`<br>
@@ -82,7 +82,7 @@ The first table contains information on poverty for five races + all the races s
 #### Methods
 First, with the line chart we explore the change in the percentage of people in poverty in each group (3 age groups x 5 races). <br>
 Second, we look at the change over time for these groups, choose the ones with an increase or decrease trend and run the Mann-Kendall test and find the Pearson correlation coefficient to check if it had been so.
-<!-- #endregion -->
+
 
 #### Load and Clean Data
 
@@ -149,7 +149,7 @@ lineplot_hist_pov('pct_over_64')
 ![Historical Poverty over 64 y.o.](\assets\leb\pov4.png)
 
 
-<!-- #region -->
+
 ##### From the graphs above we can observe the following trends:
 
  - Children: Poverty dropped in the 90s for all groups, returned to the pre-90s level, then dropped again. Today, the situation is better for all groups except white, which anyway is doing way better than most of the rest.
@@ -159,7 +159,7 @@ lineplot_hist_pov('pct_over_64')
  
  
  - Seniors: Has dropped significantly for Black and white people, slightly decreased for Hispanic people, and stayed the same for Asian and Native Americans.
-<!-- #endregion -->
+
 
 ```python
 import pymannkendall as mk
@@ -303,7 +303,7 @@ The same trends are observed in the under-18 age group.
 
 In the over-64-year-old group, the most conspicuous difference is when calculating poverty without social security. The estimates are higher than in the historical poverty data from this project's section above before these benefits reached their broad scope.
 
-<!-- #region -->
+
 # Poverty in the United States by Different Group
 #### Task
 Explore the poverty situation in 2021 and draw conclusions. 
@@ -317,7 +317,7 @@ The data is split into the following groups: race, sex, age, education attainmen
 1. Create a series of bar charts to show the percentage of people in poverty in all nine groups (without the context).
 
 2. Use treemaps to  see the difference in the proportion of people in and not in poverty. For that, I chose two groups: race and educational attainment.
-<!-- #endregion -->
+
 
 #### Load and Clean Data
 
@@ -513,7 +513,7 @@ The difference is vast in other obvious examples – between rural/urban and sub
 
 # Conclusion
 
-<!-- #region -->
+
 #### What's done
 We created several functions to perform data cleaning and visualization and tested them with our data. Among them are functions that do the following:
 - Extract certain rows from the DataFrame and change the data types;
@@ -534,4 +534,4 @@ Despite the overall drop in poverty over the years, data confirms that people fr
 
 #### What's next
 The next step is to perform exploratory data analysis with data on income and income distribution from the same Census data from 2021.
-<!-- #endregion -->
+ -->

@@ -5,7 +5,7 @@ layout: post
 categories: [finance, personal]
 tags: [python,eda,data analysis,personal data]
 ---
-# Intro
+<!-- # Intro
 I take a look at the way I spend money and draw some insights from it. It could help me handle my finances in a more meaningful way.<br>
 
 ## Data
@@ -463,4 +463,4 @@ Note: the average prices in three categories are 154, 145, and 151.
 3. 'Other' (necessary items excluding food) is the most common category.
 
 4. Coffee makes up 49% of all the spending in the Extra category and this is the most expensive item in the dataset. It explains the big size of this category.<br>
-The hypothesis that products from the Extra category are more expensive on average was couldn't be rejected.
+The hypothesis that products from the Extra category are more expensive on average was couldn't be rejected. -->
