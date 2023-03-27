@@ -6,7 +6,7 @@ categories: [health, economy]
 tags: [python,eda,data analysis,world bank]
 ---
 
-<!-- # Life Expectanct at Birth
+# Life Expectanct at Birth
 I used data from the World Bank on life expectancy along with other parameters (mortality, diseases, etc.) for every country every year from 2000 to 2015. This data is quite a mess. For example, the GDP column is measured in many different units, so it is completely unusable, or the column names are broken.
 
 There are no analytical conclusions at the end, as all the findings are quite obvious. The sole goal of this project is to apply my knowledge in data cleaning and visualization, as well as try to write a good-looking and reader-friendly notebook.
@@ -416,4 +416,4 @@ countries = countries.sort_values(by='country').reset_index(drop=True)
 
 For the steps 7 and 8, I custom functions to visualize all the required data efficiently. <br> 
 The first function takes in a counter for subplots and a column name to build a scatterplot. <br> 
-The second function takes in a year, list of columns, and list of Boolean of the same lenth to tell whether a log transformation should be applied to the plot. -->
+The second function takes in a year, list of columns, and list of Boolean of the same lenth to tell whether a log transformation should be applied to the plot.
