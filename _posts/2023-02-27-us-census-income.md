@@ -10,7 +10,6 @@ This is the second part of the project, in which I analyze the Census data on po
 
 # Historical Distribution of Incomes by Race and Ethnicity
 
-
 ## Introduction
 It is the second part of the project, in which I analyze the Census data on poverty and income. In this part, I explore the data on historical income distribution in the United States (the latest Census data available is for 2021).
 
