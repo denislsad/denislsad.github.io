@@ -5,7 +5,7 @@ layout: post
 categories: [finance, personal]
 tags: [python,eda,data analysis,personal data]
 ---
-<!-- # Intro
+# Intro
 In this project I take a look at my spending on coffee. It stems from my habit of drinking it in coffee shops, which I did quite frequently in the last couple of years. This is an opportunity to explore it.
 
 
@@ -407,4 +407,4 @@ Coffee made up 3.1% of all spendings.
 
 5. Again, I drank coffee more often from Friday to Sunday but spent less on average. But because of more visits, the grouped sum is higher these days than on Monday to Thursday.
 
-6. Overall, coffee made up 3.1% of all my spending from August 2020 to August 2022. -->
+6. Overall, coffee made up 3.1% of all my spending from August 2020 to August 2022.
