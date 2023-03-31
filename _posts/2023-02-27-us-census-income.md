@@ -6,7 +6,7 @@ categories: [social, census]
 tags: [python,usa,census,population]
 ---
 
-This is the second part of the project, in which I analyze the Census data on poverty and income. In this part, I explore the data on historical income distribution for households of different groups of origins/races in the United States (the latest Census data available is for 2021). You can find this project's data and code [on GitHub](https://github.com/denislsad/us-census-income). The first part (about poverty) is available [here](https://github.com/denislsad/us-census-poverty)
+This is the second part of the project, in which I analyze the Census data on poverty and income. In this part, I explore the data on historical income distribution for households of different groups of origins/races in the United States (the latest Census data available is for 2021). You can find this project's data and code [on GitHub](https://github.com/denislsad/us-census-income). The first part (about poverty) is available [here](https://denislsad.github.io/posts/us-census-poverty/)
 
 # Historical Distribution of Incomes by Race and Ethnicity
 
