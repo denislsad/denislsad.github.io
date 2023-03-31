@@ -345,7 +345,7 @@ detailed_new.describe()
 sns.boxplot(data=detailed_new, x='Price', showfliers=False)
 plt.show()
 ```
-![Spending Five-Number Summary](\assets\leb\spend1.png)
+![Spending Five-Number Summary](https://raw.githubusercontent.com/denislsad/denislsad.github.io/main/assets/leb/spend1.png)
 
 ### Item statistics
 
@@ -400,7 +400,7 @@ p.gca().add_artist(my_circle)
 
 plt.show()
 ```
-![Categories Donut Chart](\assets\leb\spend2.png)
+![Categories Donut Chart](https://raw.githubusercontent.com/denislsad/denislsad.github.io/main/assets/leb/spend2.png)
 ```python
 # As we see, all three categories seem not be differ dramatically. Check it with barplot:
 # counts_cat = list(categories['index'])
@@ -409,7 +409,7 @@ plt.bar(categories['Category'], categories['Price'], color='brown')
 plt.title('Total Expenses by Category', fontsize=14)
 plt.show()
 ```
-![Total Expenses by Category](\assets\leb\spend3.png)
+![Total Expenses by Category](https://raw.githubusercontent.com/denislsad/denislsad.github.io/main/assets/leb/spend3.png)
 ### Detailed look at the Extra category
 This category, despite its name, is quite large. A possible reason is that four out five most expensive items (see the items_summed table above) are from this category. <br> 
 Let's take a look at what percentage coffee makes up in Extra.
@@ -428,7 +428,7 @@ Coffee takes up almost half of all expenses in the Extra category. <br> Finally,
 sns.boxplot(data=detailed_new, x='Category', y='Price', showfliers=False)
 plt.show()
 ```
-![Categories Five-Number Statistics](\assets\leb\spend4.png)
+![Categories Five-Number Statistics](https://raw.githubusercontent.com/denislsad/denislsad.github.io/main/assets/leb/spend4.png)
 
 Since the Price data is not normally distributed (but right-skewed), run the Kruskal-Wallis H-test to check if the medians of all three categories are from the same population 
 
