@@ -11,7 +11,7 @@ In this project I take a look at my spending on coffee. It stems from my habit o
 
 ## Data
 The data is taken from a statement of account and it is quite messy, so it involves a lot of data cleaning and tidying. Here's a snippet from the original Excel table with the transaction history:<br>
-![Data Set Exerpt](\assets\leb\coffee1.png)<br>
+![Data Set Exerpt](/assets/leb/coffee1.png)<br>
 Here, Excel has problems with reading Cyrillic text. But the organization names of all coffee shops are in English.
 
 
@@ -236,7 +236,7 @@ plt.ylabel('Month')
 plt.show()
 ```
 
-![Total Coffee Spending by Month](\assets\leb\coffee2.png)
+![Total Coffee Spending by Month](/assets/leb/coffee2.png)
 
 It seems like the spending on coffee has steadily declined from the peak of May 2021, but skyrocketed again in the last two months. <br>
 
@@ -274,7 +274,7 @@ plt.xlabel("Month", fontsize=14)
 plt.ylabel("Sum (RUB)", fontsize=14)
 plt.show()
 ```
-![Total Coffee Spending by Month (Area Chart) + Cumulative Monthly Sum Average](\assets\leb\coffee3.png)
+![Total Coffee Spending by Month (Area Chart) + Cumulative Monthly Sum Average](/assets/leb/coffee3.png)
 
 The spending has, in fact, dropped since May 2021. <br>
 
@@ -319,8 +319,8 @@ plt.ylabel('Visits')
 
 plt.show()
 ```
-![Average Coffee Check by Month](\assets\leb\coffee4.png)
-![Number of Visits by Month](\assets\leb\coffee5.png)
+![Average Coffee Check by Month](/assets/leb/coffee4.png)
+![Number of Visits by Month](/assets/leb/coffee5.png)
 
 ## By days of week
 The next question is on which day of the week, I tended to drink more coffee.
@@ -351,7 +351,7 @@ plt.figure(figsize=(14, 7))
 sns.boxplot(data=coffee, x='day_of_week', y='spent', showfliers=True, order=coffee_week['day_of_week'])
 plt.show()
 ```
-![Coffee Spending by Day of Week](\assets\leb\coffee6.png)
+![Coffee Spending by Day of Week](/assets/leb/coffee6.png)
 ```python
 plt.subplot(1, 2, 1)
 sns.barplot(data=coffee_week, x='day_of_week', y='sum', color='#be9b7b')
@@ -367,7 +367,7 @@ plt.subplots_adjust(bottom=-0.4, left=-1)
 plt.show()
 ```
 
-![Spending on Coffee by Day of Week – Total Sum and Number of Times](\assets\leb\coffee7.png)
+![Spending on Coffee by Day of Week – Total Sum and Number of Times](/assets/leb/coffee7.png)
 
 
 Summing up, I was more likely to visit a coffee shop on weekends and Fridays (in terms of both sum and number of visits).<br> However, I spent less money per check these days. On the contrary, Monday to Wednesday were the days I spent the most on average.
