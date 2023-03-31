@@ -270,7 +270,7 @@ plt.title('Life Expectancy for Developed and Developing Countries (2000-2015)', 
 plt.ylabel('Life Expectancy at Birth')
 plt.show()
 ```
-![Life expenctancy for developed and developing countries](\assets\leb\leb1.png)
+![Life expenctancy for developed and developing countries](https://raw.githubusercontent.com/denislsad/denislsad.github.io/main/assets/leb/leb1.png)
 
 ### Correlation of life expectancy with other variables.
 ```python
@@ -299,7 +299,7 @@ led_stats_corr(4, 'schooling')
 plt.subplots_adjust(wspace=0.25, hspace=0.25, top=1.3, bottom=0.2)
 plt.show()
 ```
-![Life expectancy vs other variables](\assets\leb\leb2.png)
+![Life expectancy vs other variables](https://raw.githubusercontent.com/denislsad/denislsad.github.io/main/assets/leb/leb2.png)
 
 Based on these graphs, we see a possitive correlation between life expectancy with Income Composition of Resources and Schooling. <br>
 There is a slight possitive correlation with alcohol and, especially, BMI, but it doesn't mean that people who consume more alcohol or have higher BMI tend to live longer in general.
@@ -352,25 +352,25 @@ years = [2000, 2015]
 for year in years:
     dist_by_year(year, ['adult_mortality', 'infant_deaths', 'under_five_deaths'], [False, True, True])
 ```
-![Adult mortality rate in 2000](\assets\leb\leb3.png)
+![Adult mortality rate in 2000](https://raw.githubusercontent.com/denislsad/denislsad.github.io/main/assets/leb/leb3.png)
 
-![Infant death rate in 2000, log](\assets\leb\leb4.png)
+![Infant death rate in 2000, log](https://raw.githubusercontent.com/denislsad/denislsad.github.io/main/assets/leb/leb4.png)
 
-![Under five death rate in 2000, log](\assets\leb\leb5.png)
+![Under five death rate in 2000, log](https://raw.githubusercontent.com/denislsad/denislsad.github.io/main/assets/leb/leb5.png)
 
-![Adult mortality rate in 2015](\assets\leb\leb6.png)
+![Adult mortality rate in 2015](https://raw.githubusercontent.com/denislsad/denislsad.github.io/main/assets/leb/leb6.png)
 
-![Infant death rate in 2015, log](\assets\leb\leb7.png)
+![Infant death rate in 2015, log](https://raw.githubusercontent.com/denislsad/denislsad.github.io/main/assets/leb/leb7.png)
 
-![Under five death rate in 2015, log](\assets\leb\leb8.png)
+![Under five death rate in 2015, log](https://raw.githubusercontent.com/denislsad/denislsad.github.io/main/assets/leb/leb8.png)
 
-![Measles rate in 2015, log](\assets\leb\leb9.png)
+![Measles rate in 2015, log](https://raw.githubusercontent.com/denislsad/denislsad.github.io/main/assets/leb/leb9.png)
 
-![Polio rate in 2015, log](\assets\leb\leb10.png)
+![Polio rate in 2015, log](https://raw.githubusercontent.com/denislsad/denislsad.github.io/main/assets/leb/leb10.png)
 
-![Diphtheria rate in 2015](\assets\leb\leb11.png)
+![Diphtheria rate in 2015](https://raw.githubusercontent.com/denislsad/denislsad.github.io/main/assets/leb/leb11.png)
 
-![Hepatitis B rate in 2015](\assets\leb\leb12.png)
+![Hepatitis B rate in 2015](https://raw.githubusercontent.com/denislsad/denislsad.github.io/main/assets/leb/leb12.png)
 
 ## Conclusion
 What was done throughout the process.
