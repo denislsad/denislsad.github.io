@@ -5,7 +5,7 @@ layout: post
 categories: [social, census]
 tags: [python,usa,census,population]
 ---
-<!-- 
+
 This is the second part of the project, in which I analyze the Census data on poverty and income. In this part, I explore the data on historical income distribution for households of different groups of origins/races in the United States (the latest Census data available is for 2021). You can find this project's data and code [on GitHub](https://github.com/denislsad/us-census-income). The first part (about poverty) is available [here](https://github.com/denislsad/us-census-poverty)
 
 # Historical Distribution of Incomes by Race and Ethnicity
@@ -247,4 +247,4 @@ We created the bar chart with an axis object and also shrank it a little to disp
 
 3) Created a series of line charts to show the historical change in median income for all the groups separately and in general. 
 
-4) Found Pearson's r to be sure if there were a significant change in incomes. -->
+4) Found Pearson's r to be sure if there were a significant change in incomes.

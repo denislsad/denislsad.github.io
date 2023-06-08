@@ -6,7 +6,6 @@ categories: [social, census]
 tags: [python,usa,census,population]
 ---
 
-<!-- 
 This is the first part of the project, in which I analyze the Census data on poverty and incomes in the United States. Here, I focus on the data on poverty. The [next part](https://github.com/denislsad/us-census-income) is about income and income distribution. The latest available data from Census comes from the year 2021. You can find this project's data and code [on GitHub](https://github.com/denislsad/us-census-poverty).
 
 I'm interested in displaying trends over time for different groups (by age, race, and family type) and answering questions with statistical tests and visualization. This project consists of three sections. Each of them starts with a custom function definition, followed by the implementation of these functions and conclusions.
@@ -534,4 +533,3 @@ Despite the overall drop in poverty over the years, data confirms that people fr
 
 #### What's next
 The next step is to perform exploratory data analysis with data on income and income distribution from the same Census data from 2021.
- -->
