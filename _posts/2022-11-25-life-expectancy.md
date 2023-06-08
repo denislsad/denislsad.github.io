@@ -6,7 +6,7 @@ categories: [health, economy]
 tags: [python,eda,data analysis,world bank]
 ---
 
-<!-- # Life Expectanct at Birth
+# Life Expectanct at Birth
 I used data from the World Bank on life expectancy along with other parameters (mortality, diseases, etc.) for every country every year from 2000 to 2015. This data is quite a mess. For example, the GDP column is measured in many different units, so it is completely unusable, or the column names are broken.
 
 There are no analytical conclusions at the end, as all the findings are quite obvious. The sole goal of this project is to apply my knowledge in data cleaning and visualization, as well as try to write a good-looking and reader-friendly notebook.
@@ -270,7 +270,7 @@ plt.title('Life Expectancy for Developed and Developing Countries (2000-2015)', 
 plt.ylabel('Life Expectancy at Birth')
 plt.show()
 ```
-![Life expenctancy for developed and developing countries](\assets\leb\leb1.png)
+![Life expenctancy for developed and developing countries](https://raw.githubusercontent.com/denislsad/denislsad.github.io/main/assets/leb/leb1.png)
 
 ### Correlation of life expectancy with other variables.
 ```python
@@ -299,7 +299,7 @@ led_stats_corr(4, 'schooling')
 plt.subplots_adjust(wspace=0.25, hspace=0.25, top=1.3, bottom=0.2)
 plt.show()
 ```
-![Life expectancy vs other variables](\assets\leb\leb2.png)
+![Life expectancy vs other variables](https://raw.githubusercontent.com/denislsad/denislsad.github.io/main/assets/leb/leb2.png)
 
 Based on these graphs, we see a possitive correlation between life expectancy with Income Composition of Resources and Schooling. <br>
 There is a slight possitive correlation with alcohol and, especially, BMI, but it doesn't mean that people who consume more alcohol or have higher BMI tend to live longer in general.
@@ -352,25 +352,25 @@ years = [2000, 2015]
 for year in years:
     dist_by_year(year, ['adult_mortality', 'infant_deaths', 'under_five_deaths'], [False, True, True])
 ```
-![Adult mortality rate in 2000](\assets\leb\leb3.png)
+![Adult mortality rate in 2000](https://raw.githubusercontent.com/denislsad/denislsad.github.io/main/assets/leb/leb3.png)
 
-![Infant death rate in 2000, log](\assets\leb\leb4.png)
+![Infant death rate in 2000, log](https://raw.githubusercontent.com/denislsad/denislsad.github.io/main/assets/leb/leb4.png)
 
-![Under five death rate in 2000, log](\assets\leb\leb5.png)
+![Under five death rate in 2000, log](https://raw.githubusercontent.com/denislsad/denislsad.github.io/main/assets/leb/leb5.png)
 
-![Adult mortality rate in 2015](\assets\leb\leb6.png)
+![Adult mortality rate in 2015](https://raw.githubusercontent.com/denislsad/denislsad.github.io/main/assets/leb/leb6.png)
 
-![Infant death rate in 2015, log](\assets\leb\leb7.png)
+![Infant death rate in 2015, log](https://raw.githubusercontent.com/denislsad/denislsad.github.io/main/assets/leb/leb7.png)
 
-![Under five death rate in 2015, log](\assets\leb\leb8.png)
+![Under five death rate in 2015, log](https://raw.githubusercontent.com/denislsad/denislsad.github.io/main/assets/leb/leb8.png)
 
-![Measles rate in 2015, log](\assets\leb\leb9.png)
+![Measles rate in 2015, log](https://raw.githubusercontent.com/denislsad/denislsad.github.io/main/assets/leb/leb9.png)
 
-![Polio rate in 2015, log](\assets\leb\leb10.png)
+![Polio rate in 2015, log](https://raw.githubusercontent.com/denislsad/denislsad.github.io/main/assets/leb/leb10.png)
 
-![Diphtheria rate in 2015](\assets\leb\leb11.png)
+![Diphtheria rate in 2015](https://raw.githubusercontent.com/denislsad/denislsad.github.io/main/assets/leb/leb11.png)
 
-![Hepatitis B rate in 2015](\assets\leb\leb12.png)
+![Hepatitis B rate in 2015](https://raw.githubusercontent.com/denislsad/denislsad.github.io/main/assets/leb/leb12.png)
 
 ## Conclusion
 What was done throughout the process.
@@ -416,4 +416,4 @@ countries = countries.sort_values(by='country').reset_index(drop=True)
 
 For the steps 7 and 8, I custom functions to visualize all the required data efficiently. <br> 
 The first function takes in a counter for subplots and a column name to build a scatterplot. <br> 
-The second function takes in a year, list of columns, and list of Boolean of the same lenth to tell whether a log transformation should be applied to the plot. -->
+The second function takes in a year, list of columns, and list of Boolean of the same lenth to tell whether a log transformation should be applied to the plot.
