@@ -1,3 +1,11 @@
+---
+title: A/B Testing for an E-Commerce Website
+date: 2023-06-23 15:30:00
+layout: post
+categories: [ecommerce, AB testing]
+tags: [python,ab testing,data analysis,statistics]
+---
+
 ## Introduction
 <b>Data.</b> In this project, we are conducting an A/B test for an e-commerce website. This data was downloaded from Kaggle with no context as to where the data came from and what it represents. The 'landing_page' column suggests that we're dealing with two versions of a landing page that appears after a user clicks on a link in an email or an ad.
 
