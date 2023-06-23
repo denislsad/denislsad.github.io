@@ -1,6 +1,6 @@
 ---
 title: A/B Testing for an E-Commerce Website
-date: 2023-06-23 15:30:00
+date: 2023-06-23 7:30:00
 layout: post
 categories: [ecommerce, AB testing]
 tags: [python,ab testing,data analysis,statistics]
