@@ -18,7 +18,7 @@ The data is stored in nine Excel tables. I grouped them by denoting with letters
 
 - The tables don't have a DataFrame structure as they are stored in a way more convenient for Excel.<br>
 Note: For all DataFrames population is given in thousands.
-![Original Data](\assets\leb\pov1.png)
+![Original Data](/assets/leb/pov1.png)
 
 
 
@@ -141,11 +141,11 @@ lineplot_hist_pov('pct_under_18')
 lineplot_hist_pov('pct_18_to_64')
 lineplot_hist_pov('pct_over_64')
 ```
-![Historical Poverty under 18 y.o.](\assets\leb\pov2.png)
+![Historical Poverty under 18 y.o.](/assets/leb/pov2.png)
 
-![Historical Poverty 18 — 64 y.o.](\assets\leb\pov3.png)
+![Historical Poverty 18 — 64 y.o.](/assets/leb/pov3.png)
 
-![Historical Poverty over 64 y.o.](\assets\leb\pov4.png)
+![Historical Poverty over 64 y.o.](/assets/leb/pov4.png)
 
 
 
@@ -212,7 +212,7 @@ table.scale(0.8, 2)
 plt.show()
 ```
 
-![Trend over Time Table](\assets\leb\pov5.png)
+![Trend over Time Table](/assets/leb/pov5.png)
 
 #### Findings
 
@@ -277,19 +277,19 @@ def plot_measures(df):
 plot_measures(impact_under_18)
 ```
 
-![Alternative Resource Measures of Poverty — under 18 y.o.](\assets\leb\pov6.png)
+![Alternative Resource Measures of Poverty — under 18 y.o.](/assets/leb/pov6.png)
 
 ```python
 plot_measures(impact_18_to_64)
 ```
 
-![Alternative Resource Measures of Poverty — 18 to 64 y.o.](\assets\leb\pov7.png)
+![Alternative Resource Measures of Poverty — 18 to 64 y.o.](/assets/leb/pov7.png)
 
 ```python
 plot_measures(impact_over_64)
 ```
 
-![Alternative Resource Measures of Poverty — over 64 y.o.](\assets\leb\pov8.png)
+![Alternative Resource Measures of Poverty — over 64 y.o.](/assets/leb/pov8.png)
 
 #### Findings
 
@@ -403,7 +403,7 @@ def bar_plot_by_group(df, subplot_num, x_values, y_values='characteristic'):
 
 At first, I tried to show how the situation differs from group to group with side-by-side bars. But it turned out, that this difference is very hard to discern (for example, the rendered figure below hardly tells us that the percentage of Black people in poverty is roughly two times higher than that of white people).
 
-![People in and not in of Poverty Bar Charts](\assets\leb\pov9.png)
+![People in and not in of Poverty Bar Charts](/assets/leb/pov9.png)
 
 
 So instead, use percentages instead of absolute values. 
@@ -424,7 +424,7 @@ plt.subplots_adjust(wspace=0.25, hspace=0.3, left=-1.5, right=1.5, bottom=-2, to
 plt.show()
 ```
 
-![Percent of People in Poverty by Chosen Characteristics](\assets\leb\pov10.png)
+![Percent of People in Poverty by Chosen Characteristics](/assets/leb/pov10.png)
 
 Next, create two treemaps side by side. The first would show the proportion of people below the poverty and the second above. It would visualize disproportions in the level of poverty for certain groups of people.
 
@@ -484,13 +484,13 @@ These maps clearly demonstrate the disproportional distribution of poverty for d
 compare_treemap(poverty_race)
 ```
 
-![In and not in Poverty Treemap by Race](\assets\leb\pov11-1.png)
+![In and not in Poverty Treemap by Race](/assets/leb/pov11-1.png)
 
 ```python
 compare_treemap(poverty_educational_attainment)
 ```
 
-![In and not in Poverty Treemap by Education](\assets\leb\pov11-2.png)
+![In and not in Poverty Treemap by Education](/assets/leb/pov11-2.png)
 
 ```python
 # Explore the general numbers

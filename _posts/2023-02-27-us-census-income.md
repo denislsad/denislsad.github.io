@@ -163,7 +163,7 @@ plt.ylabel("Percentile", fontsize = 14)
 plt.show()
 ```
 
-![Percent Distribution of Incomes across 5 Race Groups in the US, 2021](\assets\leb\inc1.png)
+![Percent Distribution of Incomes across 5 Race Groups in the US, 2021](/assets/leb/inc1.png)
 
 With this plot, we can see differences in the welfare of different race groups. <br>
 For example, the first four percentiles take up more than 50% of the bar in the Black group and only 25% in the Asian group. It means that half of the Black population and a quarter of the Asian population earns 50,000 USD or less. <br>
@@ -189,7 +189,7 @@ plt.title('Median Household Income for 5 Races (1967-2021)', fontsize=18)
 plt.ylabel('Median Income ($)', fontsize=14)
 plt.show()
 ```
-![Median Household Income for 5 Races (1967-2021](\assets\leb\inc2.png)
+![Median Household Income for 5 Races (1967-2021](/assets/leb/inc2.png)
 
 
 From the chart, we can see that the incomes have been steadily growing for most of the groups and overall. <br>
@@ -227,7 +227,7 @@ plt.title('Median Income of Native American Households, 1987–2021')
 plt.show()
 ```
 
-![Median Income of Native American Households, 1987–2021](\assets\leb\inc3.png)
+![Median Income of Native American Households, 1987–2021](/assets/leb/inc3.png)
 
 ## Conclusion
 #### Key findings
