@@ -1,8 +1,8 @@
 ---
-title: A/B Testing for an E-Commerce Website
+title: A/B Testing for an E-commerce Website
 date: 2023-06-23 7:30:00
 layout: post
-categories: [ecommerce, AB testing]
+categories: [ecommerce, AB testing] 
 tags: [python,ab testing,data analysis,statistics]
 ---
 
@@ -207,14 +207,17 @@ Each group has approximately 145,000 values. Running a test of this size would b
 - Ratio: The ratio of the tratment sample to the control sample.
 
 Knowing the actual baseline conversion rate and the desired lift, we can calculate the effect size, or Cohen's d.
-- Effect Size: In simple terms, measures the strength of the relationship between two groups. To calculate it, we divide difference between two means (i.e. conversion rates) by the pooled standard deviation.\
-\
-$ d = \frac{(X_2 - X_1)}{SD_{pooled}} $
+- Effect Size: In simple terms, measures the strength of the relationship between two groups. To calculate it, we divide difference between two means (i.e. conversion rates) by the pooled standard deviation.
 <br>
 <br>
-- The pooled standard deviation required for Cohen's d, is calculated as follows:\
-\
-$ SD_{pooled} = \sqrt{\frac{SD_1^2 + SD_2^2}{2}} $
+
+$$ d = \frac{(X_2 - X_1)}{SD_{pooled}} $$
+
+<br>
+- The pooled standard deviation required for Cohen's d, is calculated as follows:
+<br>
+
+$$ SD_{pooled} = \sqrt{\frac{SD_1^2 + SD_2^2}{2}} $$
 <br>
 
 
