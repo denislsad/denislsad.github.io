@@ -208,14 +208,17 @@ Each group has approximately 145,000 values. Running a test of this size would b
 
 Knowing the actual baseline conversion rate and the desired lift, we can calculate the effect size, or Cohen's d.
 - Effect Size: In simple terms, measures the strength of the relationship between two groups. To calculate it, we divide difference between two means (i.e. conversion rates) by the pooled standard deviation.
-$$ d = \frac{(X_2 - X_1)}{SD_{pooled}} $$
+
+![Effect size formula](/assets/leb/math1.png)
+
 - The pooled standard deviation required for Cohen's d, is calculated as follows:
-$$ SD_{pooled} = \sqrt{\frac{SD_1^2 + SD_2^2}{2}} $$
+
+![Pooled standard deviation formula](/assets/leb/math2.png)
+
 ```python
 ## Defining parameters
 alpha = 0.05
 power = 0.8
-
 # Calculating baseline conversion rate, that is equal 0.12
 x1 = round(sum(group_A['converted'] == 1) / len(group_A), 3)
 # We want this rate to be at least 0.14
