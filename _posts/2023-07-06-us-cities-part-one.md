@@ -330,7 +330,7 @@ cities = merge_frames(income_personal)
 ```
 
 ### Air Quality
-Air Quality Index (AQI). Data from [U.S. Environmental Protection Agency](aqs.epa.gov).\
+Air Quality Index (AQI). Data from [U.S. Environmental Protection Agency](https://aqs.epa.gov/).\
 The AQI is based on concentrations of five major air pollutants regulated by the Clean Air Act: ground-level ozone, particulate matter, carbon monoxide, sulfur dioxide, and nitrogen dioxide.
 The AQI is calculated based on the highest concentration of these pollutants in a given area over a given period of time and then scaled to a value between 0 and 500.\
 An AQI less than 50 is considered good, from 51 to 100 - moderate. If the AQI is higher than 100, the air quality is unhealthy: first for certain sensitive groups of people, and then for everyone as the AQI gets higher and higher.
@@ -424,10 +424,10 @@ Commute time is collected by the American Community Survey (ACS – the same one
 ##### Getting the data
 I had problems downloading the file from the Census website, so I manually copied and pasted the values into Excel. But it was all pasted in one column – with commute values in every other row. To fix this, I:
 1. Moved the time values to another column with `=IF(ISEVEN(ROW(A1)),A1,"")`,
-![Even Rows](assets/leb/commute1.png)
+![Even Rows](/assets/leb/commute1.png)
 2. Moved the metro values to the third column with `=IF(ISODD(ROW(A1)),A1,"")`,
 3. Replaced these formulas with values and deleted the original broken column,
-![Two Columns](assets/leb/commute2.png)
+![Two Columns](/assets/leb/commute2.png)
 4. Moved column A up by one cell,
 5. Filtered out the empty cells,
 6. Dropped duplicates,
