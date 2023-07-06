@@ -6,10 +6,10 @@ categories: [social, census]
 tags: [python,eda,data analysis,usa,census,population ]
 ---
 
-# Introduction
+## Introduction
 This is the second part of the U.S. Cities project. [In the first part](https://denislsad.github.io/posts/us-cities-part-one/), I created a dataset of metropolitan areas in the United States (called "cities" for simplicity). The dataset contains 14 variables. I will explore the cities data through visualization and testing, and draw some conclusions.
 
-# Loading Data
+## Loading Data
 
 ```python
 # Import libraries used in this project
@@ -283,7 +283,7 @@ cities.head(10)
 
 Now we have all variables of the same data type and all rows with at least half of the values not missing. For the rest of this project, I will cover only a fraction of what can be done, as the possibilities for visualizing this data are endless. I will focus on some of the variables that I found most interesting.
 
-# Map
+## Map
 Display our final data on the map with Plotly Express. Note
 
 
@@ -308,7 +308,7 @@ fig.show()
 ![Map](/assets/leb/cities0.png)
 
 
-# All Variables Heat Map
+## All Variables Heat Map
 First, look at the correlation between all variables in the data set with a heat map.
 
 
@@ -337,7 +337,7 @@ From this map, we can see that:
 * The unemployment rate has a near-zero correlation with all other variables. However, the only significant correlation is with average income, meaning that higher unemployment rates tend to be associated with lower average incomes.
 * The median rent has a stronger correlation with other factors than the average rent, meaning it could be a more important factor in determining a city's livability.
 
-# Summary Statistics by Size
+## Summary Statistics by Size
 
 Use the df.describe() method to get summary statistics about the DataFrame. But to better understand the situation, it's better to divide our table into three by metropolitan area size.
 
@@ -905,7 +905,7 @@ small_cities.describe()
 From tables above, we can see that regional price parity in cities with population more than one million is almost equal to the national average of 100. Meanwhile, living cost in mid-sized and small cities is 95.6% and 92.7% of the U.S. average. <br>
 Just as we saw on the heat map, larger cities have worse air quality and longer commutes, but have higher incomes and better transportation.
 
-# Commute Time vs Transit Score by Size
+## Commute Time vs Transit Score by Size
 The heatmap shows some correlation (0.3) between the median commute time and the transit score. It doesn't necessarily means that the better the public transportation in a city, the longer it takes to get to work, but this correlation seems counterintuitive. Let's explore it further by plotting it and using the price parity and size as third and forth variables.<br>
 The most likely explanation is that both longer commutes and good public transportation are attributes of large cities with high costs of living.
 
@@ -929,7 +929,7 @@ plt.show()
 
 The larger and more expensive cities occupy the upper right corner of the graph, while smaller and cheaper cities are associated with poorer public transportation and shorter commutes.
 
-# Average Income and Rent by Size and Region
+## Average Income and Rent by Size and Region
 
 
 ```python
@@ -1120,7 +1120,7 @@ for region in ['Midwest', 'Northeast', 'South', 'West']:
 
 The only pair with no significant difference is Northeast-South. From these two tables and the scatterplot, we can see that a region with the highest rents is not the region with the highest incomes, and the region with the lowest rents is not the region with the lowest incomes. This could be explained by outliers in one of these two variables (for example, a city in the West with very high rents but moderate incomes).
 
-# Median Rental Prices by Region and Size
+## Median Rental Prices by Region and Size
 Explore the rental prices by region further with regard to the size.
 
 
@@ -1158,7 +1158,7 @@ plt.show()
 
 Large cities are more expensive to rent, but there are important differences between regions. For example, large cities in the Midwest are still cheaper than small cities in the Northeast. Midsize Western cities can be as expensive or more than large Southern and Northeastern cities.
 
-# Unemployment Rate by Region and Size
+## Unemployment Rate by Region and Size
 Cities in the West have the highest unemployment rate, while the Northeast is the only region where small cities have a higher unemployment rate than medium-sized cities.
 
 
@@ -1187,7 +1187,7 @@ plt.show()
     
 
 
-# Commute Times by Region and Size
+## Commute Times by Region and Size
 The bigger a city, the longer it takes to get to work. But there are some differences between regions.
 
 
@@ -1213,7 +1213,7 @@ plt.show()
     
 
 
-# Median AQI by Size
+## Median AQI by Size
 
 
 ```python
@@ -1293,7 +1293,7 @@ cities[cities['MedianAQI'] >= 75][['City', 'Population', 'MedianAQI']]
 
 
 
-# Conclusion
+## Conclusion
 After collecting and cleaning the data, I used exploratory data analysis. There are many ways to explore this data, and I chose to do the following:
 - Map of cities by size with all variable information in the toolkit;
 - Heatmap to see the correlation between all variables and summary statistics tables;

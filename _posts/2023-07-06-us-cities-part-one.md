@@ -6,7 +6,7 @@ categories: [social, census]
 tags: [python,dataset,data cleaning,usa,census,population ]
 ---
 
-# Introduction
+## Introduction
 I will create a table with information about metropolitan areas in the United States. For simplicity, they will just be called "cities". The variables are:
 - Population,
 - Average Rental Price,
@@ -29,7 +29,7 @@ After finding the data in open sources, I clean it if necessary and load it one 
     
 <b>Expectations.</b> A complete dataset with American cities and information about them. A demonstration of what can be done with this data for analysis and insights.
 
-# Loading Data
+## Loading Data
 In this part we will create a DataFrame with the 14 columns mentioned above, explaining the meaning and methodology behind each one.
 
 
@@ -52,7 +52,7 @@ def merge_frames(new_df, method='left', print_ten=False):
     return df
 ```
 
-## First four columns
+## First Four Columns
 
 ### Population
 Metropolitan Area Population in 2020. Data from Census, retrieved from [citypopulation.de](https://citypopulation.de/) and preprocessed by myself in Excel.
@@ -315,7 +315,7 @@ print(unemp_df.head(10))
 cities = merge_frames(unemp_df)
 ```
 
-## Last ten columns
+## Last Ten Columns
 The next set of variables come in a more tidy format and are simply appended to the main DataFrame. However, some of them were pre-processed by me in Excel to save time. In most cases, it was just a matter of splitting the columns by a certain delimiter and deleting unnecessary commas and dots in the numeric values.
 
 
@@ -1036,7 +1036,7 @@ cities.to_excel('us_cities.xlsx')
 cities.to_csv('us_cities.csv')
 ```
 
-# Conclusion
+## Conclusion
 By the end of this project, we have a dataset of American cities with a dozen variables. We gathered this data from open sources and explained how each variable was collected and calculated. We also assigned two categories (Region and Size) based on the data.
 
 At first, we did a lot of cleaning in Python to be able to merge the data with the final dataset (AvgRent, MedianRent, UnempRate columns). The latest data was much cleaner, and we pre-processed it in Excel to save time. I usually just separated the columns with a delimiter and formatted the numeric values.
